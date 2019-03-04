@@ -8,6 +8,7 @@ use App\Models\Order;
 use Carbon\Carbon;
 use Endroid\QrCode\QrCode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller
 {
@@ -43,6 +44,7 @@ class PaymentController extends Controller
     {
         // 校验输入参数
         $data  = app('alipay')->verify();
+        Log::debug('Alipay notify', $data->all());
         // 如果订单状态不是成功或者结束，则不走后续的逻辑
         // 所有校验状态：https://docs.open.alipay.com/59/103672
         if(!in_array($data->trade_status, ['TRADE_SUCCESS', 'TRADE_FINISHED'])) {
