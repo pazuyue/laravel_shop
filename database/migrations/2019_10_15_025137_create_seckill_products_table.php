@@ -14,9 +14,10 @@ class CreateSeckillProductsTable extends Migration
     public function up()
     {
         Schema::create('seckill_products', function (Blueprint $table) {
+            $table->engine='InnoDB';
             $table->bigIncrements('id');
             $table->unsignedBigInteger('product_id');
-            //$table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->dateTime('start_at');
             $table->dateTime('end_at');
         });

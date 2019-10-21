@@ -9,6 +9,7 @@ class OrdersAddCouponCodeId extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
+            $table->engine='InnoDB';
             $table->unsignedInteger('coupon_code_id')->nullable()->after('paid_at');
             $table->foreign('coupon_code_id')->references('id')->on('coupon_codes')->onDelete('set null');
         });
