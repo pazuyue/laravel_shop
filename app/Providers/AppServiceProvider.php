@@ -42,7 +42,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('alipay', function () {
             $config = config('pay.alipay');
             //$config['notify_url'] = route('payment.alipay.notify');
-            $config['notify_url'] = 'http://requestbin.net/r/1fuhjtj1';
+            $config['notify_url'] = 'http://requestbin.net/r/12qagj51';
             $config['return_url'] = route('payment.alipay.return');
             // 判断当前项目运行环境是否为线上环境
             if (app()->environment() !== 'production') {
