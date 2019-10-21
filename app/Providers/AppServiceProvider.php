@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
+use Monolog\Logger;
 use Yansongda\Pay\Pay;
 use Illuminate\Support\Facades\Schema;
 
@@ -41,7 +42,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('alipay', function () {
             $config = config('pay.alipay');
             //$config['notify_url'] = route('payment.alipay.notify');
-            $config['notify_url'] = 'http://requestbin.fullcontact.com/143cfun1';
+            $config['notify_url'] = 'http://requestbin.net/r/1fuhjtj1';
             $config['return_url'] = route('payment.alipay.return');
             // 判断当前项目运行环境是否为线上环境
             if (app()->environment() !== 'production') {
