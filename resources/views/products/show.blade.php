@@ -92,6 +92,12 @@
             @else
               <a class="btn btn-primary" href="{{ route('login') }}">请先登录</a>
             @endif
+                @elseif($product->type === \App\Models\Product::TYPE_ADVANCE)
+                  @if(Auth::check())
+                      <button class="btn btn-primary btn-advance">参与预售</button>
+                  @else
+                      <a class="btn btn-primary" href="{{ route('login') }}">请先登录</a>
+                  @endif
           @else
             <button class="btn btn-primary btn-add-to-cart">加入购物车</button>
         @endif
