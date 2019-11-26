@@ -20,7 +20,7 @@
                 <td>支付状态：</td>
                 <td>
                     @if($order->payment_method == 'manual')
-                       <b style="color: red"></b>
+                       <b style="color: red">已付款</b>
                     @else
                         <b>未付款</b>
                     @endif
