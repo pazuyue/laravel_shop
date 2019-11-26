@@ -28,7 +28,7 @@ Route::group([
     //预售订单
     $router->get('advance_orders', 'AdvanceOrdersController@index')->name('admin.advance_orders.index');
     $router->get('advance_orders/{order}', 'AdvanceOrdersController@show')->name('admin.advance_orders.show');
-    $router->get('advance_orders/{order}/pay', 'AdvanceOrdersController@pay')->name('admin.advance_orders.pay');
+    $router->post('advance_orders/{order}/pay', 'AdvanceOrdersController@pay')->name('admin.advance_orders.pay');
 
     //优惠券
     $router->get('coupon_codes', 'CouponCodesController@index');
