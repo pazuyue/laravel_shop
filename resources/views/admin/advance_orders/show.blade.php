@@ -17,8 +17,14 @@
             <tr>
                 <td>支付方式：</td>
                 <td>{{ $order->payment_method }}</td>
-                <td>支付渠道单号：</td>
-                <td>{{ $order->payment_no }}</td>
+                <td>支付状态：</td>
+                <td>
+                    @if($order->payment_method == 'manual')
+                        已付款
+                    @else
+                        未付款
+                    @endif
+                </td>
             </tr>
             <tr>
                 <td>收货地址</td>
