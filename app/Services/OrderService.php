@@ -178,6 +178,14 @@ class OrderService
                     ]);
                 }
                 break;
+            case 'manual':
+                $refundNo = Order::getAvailableRefundNo();
+                $order->update([
+                    'refund_no' => $refundNo,
+                    'refund_status' => Order::REFUND_STATUS_SUCCESS,
+                ]);
+
+                break;
             default:
                 throw new InternalException('未知订单支付方式：' . $order->payment_method);
                 break;
