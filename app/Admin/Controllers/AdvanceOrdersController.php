@@ -75,7 +75,7 @@ class AdvanceOrdersController extends Controller
     }
 
 
-    public function pay(Order $order, Request $request)
+    public function pay(Order $order)
     {
 
         // 判断当前订单发货状态是否为未发货
