@@ -26,19 +26,19 @@ class AdvanceProductsController  extends CommonProductsController
 
     protected function customGrid(Grid $grid)
     {
+        $grid->model()->with(['category']);
         $grid->id('ID')->sortable();
         $grid->title('商品名称');
+        $grid->column('category.name', '类目');
         $grid->on_sale('已上架')->display(function ($value) {
             return $value ? '是' : '否';
         });
         $grid->price('价格');
-        $grid->column('crowdfunding.target_amount', '目标金额');
-        $grid->column('crowdfunding.end_at', '结束时间');
-        $grid->column('crowdfunding.total_amount', '目前金额');
-        $grid->column('crowdfunding.status', ' 状态')->display(function ($value) {
-            return CrowdfundingProduct::$statusMap[$value];
-        });
+        $grid->rating('评分');
+        $grid->sold_count('销量');
+        $grid->review_count('评论数');
     }
+
 
     protected function customForm(Form $form)
     {
