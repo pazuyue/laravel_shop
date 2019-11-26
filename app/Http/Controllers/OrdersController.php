@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\OrderReviewed;
 use App\Exceptions\CouponCodeUnavailableException;
 use App\Exceptions\InvalidRequestException;
+use App\Http\Requests\AdvanceOrderRequest;
 use App\Http\Requests\ApplyRefundRequest;
 use App\Http\Requests\CrowdFundingOrderRequest;
 use App\Http\Requests\OrderRequest;
@@ -153,7 +154,8 @@ class OrdersController extends Controller
         return $orderService->crowdfunding($user, $address, $sku, $amount);
     }
 
-    public function advance(CrowdFundingOrderRequest $request, OrderService $orderService){
+    //创建预售订单
+    public function advance(AdvanceOrderRequest $request, OrderService $orderService){
         $user    = $request->user();
         $sku     = ProductSku::find($request->input('sku_id'));
         $address = UserAddress::find($request->input('address_id'));
