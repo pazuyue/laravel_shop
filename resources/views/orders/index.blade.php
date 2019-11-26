@@ -62,12 +62,7 @@
                         @endif
                       </td>
                       <td rowspan="{{ count($order->items) }}" class="text-center">
-                        @if($order->type == \App\Models\Order::TYPE_ADVANCE)
-                          <a class="btn btn-primary btn-sm" href="{{ route('advance_orders.show', ['order' => $order->id]) }}">查看预售订单</a>
-                        @else
-                          <a class="btn btn-primary btn-sm" href="{{ route('orders.show', ['order' => $order->id]) }}">查看订单</a>
-                        @endif
-
+                        <a class="btn btn-primary btn-sm" href="{{ route('orders.show', ['order' => $order->id]) }}">查看订单</a>
                         <!-- 评价入口开始 -->
                         @if($order->paid_at)
                           <a class="btn btn-success btn-sm" href="{{ route('orders.review.show', ['order' => $order->id]) }}">
