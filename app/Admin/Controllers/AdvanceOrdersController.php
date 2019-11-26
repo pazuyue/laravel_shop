@@ -77,10 +77,7 @@ class AdvanceOrdersController extends Controller
 
     public function pay(Order $order, Request $request)
     {
-        // 判断当前订单是否已支付
-        if (!$order->paid_at) {
-            throw new InvalidRequestException('该订单未付款');
-        }
+
         // 判断当前订单发货状态是否为未发货
         if ($order->ship_status !== Order::SHIP_STATUS_PENDING) {
             throw new InvalidRequestException('该订单已发货');
@@ -91,19 +88,11 @@ class AdvanceOrdersController extends Controller
             throw new InvalidRequestException('众筹订单只能在众筹成功之后发货');
         }
         // Laravel 5.5 之后 validate 方法可以返回校验过的值
-        $data = $this->validate($request, [
-            'no' => ['required'],
 
-        ], [], [
-            'no' => '订单号',
-        ]);
         // 将订单发货状态改为已发货，并存入物流信息
         $order->update([
             'paid_at' => Carbon::now(),
             'payment_method'=>'manual',
-            // 我们在 Order 模型的 $casts 属性里指明了 ship_data 是一个数组
-            // 因此这里可以直接把数组传过去
-            'ship_data'   => $data,
         ]);
 
         // 返回上一页
