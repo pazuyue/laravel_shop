@@ -111,7 +111,7 @@
             <!-- 把之前的微信支付按钮换成这个 -->
             <button class="btn btn-sm btn-success" id='btn-wechat'>微信支付</button>
             <!-- 发货后付款 -->
-            <button class="btn btn-sm btn-warning" id='btn-advance_sale'>微信支付</button>
+            <button class="btn btn-sm btn-warning" id='btn-advance_sale'>预定商品</button>
           </div>
         @endif
         <!-- 支付按钮结束 -->
