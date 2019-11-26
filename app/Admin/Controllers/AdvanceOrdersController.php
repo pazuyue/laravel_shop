@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Product;
 use Encore\Admin\Controllers\HasResourceActions;
+use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 
 class AdvanceOrdersController extends Controller
