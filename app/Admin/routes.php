@@ -56,4 +56,7 @@ Route::group([
     $router->post('seckill_products', 'SeckillProductsController@store');
     $router->get('seckill_products/{id}/edit', 'SeckillProductsController@edit');
     $router->put('seckill_products/{id}', 'SeckillProductsController@update');
+
+    //预售
+    $router->get('seckill_products', 'AdvanceProductsController@index');
 });
