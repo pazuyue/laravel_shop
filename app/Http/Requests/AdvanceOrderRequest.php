@@ -8,12 +8,12 @@
 
 namespace App\Http\Requests;
 
-use App\Models\CrowdfundingProduct;
+use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Product;
 use App\Models\ProductSku;
 use Illuminate\Validation\Rule;
 
-class AdvanceOrderRequest
+class AdvanceOrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
