@@ -60,4 +60,7 @@ Route::group([
     //预售
     $router->get('advance_products', 'AdvanceProductsController@index');
     $router->get('advance_products/create', 'AdvanceProductsController@create');
+    $router->post('advance_products', 'AdvanceProductsController@store');
+    $router->get('advance_products/{id}/edit', 'AdvanceProductsController@edit');
+    $router->put('advance_products/{id}', 'AdvanceProductsController@update');
 });
