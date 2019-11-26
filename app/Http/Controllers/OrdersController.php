@@ -152,4 +152,12 @@ class OrdersController extends Controller
         $amount  = $request->input('amount');
         return $orderService->crowdfunding($user, $address, $sku, $amount);
     }
+
+    public function advance(CrowdFundingOrderRequest $request, OrderService $orderService){
+        $user    = $request->user();
+        $sku     = ProductSku::find($request->input('sku_id'));
+        $address = UserAddress::find($request->input('address_id'));
+        $amount  = $request->input('amount');
+        return $orderService->advance($user, $address, $sku, $amount);
+    }
 }

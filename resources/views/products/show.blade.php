@@ -306,6 +306,80 @@
             });
         });
 
+        // 参与预售 按钮点击事件
+        $('.btn-advance').click(function () {
+            // 判断是否选中 SKU
+            if (!$('label.active input[name=skus]').val()) {
+                swal('请先选择商品');
+                return;
+            }
+            // 把用户的收货地址以 JSON 的形式放入页面，赋值给 addresses 变量
+            var addresses = {!! json_encode(Auth::check() ? Auth::user()->addresses : []) !!};
+            // 使用 jQuery 动态创建一个表单
+            var $form = $('<form></form>');
+            // 表单中添加一个收货地址的下拉框
+            $form.append('<div class="form-group row">' +
+                '<label class="col-form-label col-sm-3">选择地址</label>' +
+                '<div class="col-sm-9">' +
+                '<select class="custom-select" name="address_id"></select>' +
+                '</div></div>');
+            // 循环每个收货地址
+            addresses.forEach(function (address) {
+                // 把当前收货地址添加到收货地址下拉框选项中
+                $form.find('select[name=address_id]')
+                    .append("<option value='" + address.id + "'>" +
+                        address.full_address + ' ' + address.contact_name + ' ' + address.contact_phone +
+                        '</option>');
+            });
+            // 在表单中添加一个名为 购买数量 的输入框
+            $form.append('<div class="form-group row">' +
+                '<label class="col-form-label col-sm-3">购买数量</label>' +
+                '<div class="col-sm-9"><input class="form-control" name="amount">' +
+                '</div></div>');
+            // 调用 SweetAlert 弹框
+            swal({
+                text: '参与众筹',
+                content: $form[0], // 弹框的内容就是刚刚创建的表单
+                buttons: ['取消', '确定']
+            }).then(function (ret) {
+                // 如果用户没有点确定按钮，则什么也不做
+                if (!ret) {
+                    return;
+                }
+                // 构建请求参数
+                var req = {
+                    address_id: $form.find('select[name=address_id]').val(),
+                    amount: $form.find('input[name=amount]').val(),
+                    sku_id: $('label.active input[name=skus]').val()
+                };
+                // 调用众筹商品下单接口
+                axios.post('{{ route('advance_orders.store') }}', req)
+                    .then(function (response) {
+                        // 订单创建成功，跳转到订单详情页
+                        swal('订单提交成功', '', 'success')
+                            .then(() => {
+                            location.href = '/orders/' + response.data.id;
+                    });
+                    }, function (error) {
+                        // 输入参数校验失败，展示失败原因
+                        if (error.response.status === 422) {
+                            var html = '<div>';
+                            _.each(error.response.data.errors, function (errors) {
+                                _.each(errors, function (error) {
+                                    html += error+'<br>';
+                                })
+                            });
+                            html += '</div>';
+                            swal({content: $(html)[0], icon: 'error'})
+                        } else if (error.response.status === 403) {
+                            swal(error.response.data.msg, '', 'error');
+                        } else {
+                            swal('系统错误', '', 'error');
+                        }
+                    });
+            });
+        });
+
     });
   </script>
 @endsection
