@@ -25,6 +25,8 @@ Route::group([
     $router->get('orders/{order}', 'OrdersController@show')->name('admin.orders.show');
     $router->post('orders/{order}/ship', 'OrdersController@ship')->name('admin.orders.ship');
     $router->post('orders/{order}/refund', 'OrdersController@handleRefund')->name('admin.orders.handle_refund');
+    //预售订单
+    $router->get('advance_orders', 'AdvanceOrdersController@index')->name('admin.advance_orders.index');
 
     //优惠券
     $router->get('coupon_codes', 'CouponCodesController@index');
