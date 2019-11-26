@@ -24,6 +24,7 @@ class AdvanceProductsController  extends CommonProductsController
         return Product::TYPE_ADVANCE;
     }
 
+
     protected function customGrid(Grid $grid)
     {
         $grid->model()->with(['category']);
