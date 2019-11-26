@@ -110,8 +110,6 @@
             <a class="btn btn-primary btn-sm" href="{{ route('payment.alipay', ['order' => $order->id]) }}">支付宝支付</a>
             <!-- 把之前的微信支付按钮换成这个 -->
             <button class="btn btn-sm btn-success" id='btn-wechat'>微信支付</button>
-            <!-- 发货后付款 -->
-            <button class="btn btn-sm btn-warning" id='btn-advance_sale'>预定商品</button>
           </div>
         @endif
         <!-- 支付按钮结束 -->
@@ -155,25 +153,6 @@
             }
           })
       });
-
-        $('#btn-advance_sale').click(function() {
-            // 弹出确认框
-            swal({
-                title: "确认预定该商品吗？",
-                icon: "warning",
-                dangerMode: true,
-                buttons: ['取消', '确认预定'],
-            })
-                .then(function(ret) {
-                    // 如果点击取消按钮则不做任何操作
-                    if (!ret) {
-                        return;
-                    }
-                    // ajax 提交确认操作
-
-                });
-        });
-
       // 确认收货按钮点击事件
       $('#btn-receive').click(function() {
         // 弹出确认框

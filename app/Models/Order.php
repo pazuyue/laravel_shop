@@ -19,10 +19,12 @@ class Order extends Model
 
     const TYPE_NORMAL = 'normal';
     const TYPE_CROWDFUNDING = 'crowdfunding';
+    const TYPE_ADVANCE = 'advance';
 
     public static $typeMap = [
         self::TYPE_NORMAL => '普通商品订单',
         self::TYPE_CROWDFUNDING => '众筹商品订单',
+        self::TYPE_ADVANCE => '预售商品',
     ];
 
     public static $refundStatusMap = [
