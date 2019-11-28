@@ -107,7 +107,7 @@
         <!-- 支付按钮开始 -->
         @if(!$order->paid_at && !$order->closed)
           @if($order->type == \App\Models\Order::TYPE_ADVANCE)
-            <button class="btn btn-sm btn-success" id='btn-wechat'  href="{{ url('/') }}">返回首页</button>
+            <button class="btn btn-sm btn-success" href="{{ url('/') }}">返回首页</button>
             @else
             <div class="payment-buttons">
               <a class="btn btn-primary btn-sm" href="{{ route('payment.alipay', ['order' => $order->id]) }}">支付宝支付</a>
