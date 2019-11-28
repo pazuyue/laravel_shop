@@ -106,11 +106,15 @@
         </div>
         <!-- 支付按钮开始 -->
         @if(!$order->paid_at && !$order->closed)
-          <div class="payment-buttons">
-            <a class="btn btn-primary btn-sm" href="{{ route('payment.alipay', ['order' => $order->id]) }}">支付宝支付</a>
-            <!-- 把之前的微信支付按钮换成这个 -->
-            <button class="btn btn-sm btn-success" id='btn-wechat'>微信支付</button>
-          </div>
+          @if($order->type == \App\Models\Order::TYPE_ADVANCE)
+            @else
+            <div class="payment-buttons">
+              <a class="btn btn-primary btn-sm" href="{{ route('payment.alipay', ['order' => $order->id]) }}">支付宝支付</a>
+              <!-- 把之前的微信支付按钮换成这个 -->
+              <button class="btn btn-sm btn-success" id='btn-wechat'>微信支付</button>
+            </div>
+          @endif
+
         @endif
         <!-- 支付按钮结束 -->
         <!-- 如果订单的发货状态为已发货则展示确认收货按钮 -->
