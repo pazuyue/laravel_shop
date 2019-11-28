@@ -13,7 +13,6 @@
 
 Route::redirect('/', '/products')->name('root');
 Route::get('products', 'ProductsController@index')->name('products.index');
-Route::get('products', 'ProductsController@index')->name('products.index');
 
 Auth::routes(['verify' => true]);
 
