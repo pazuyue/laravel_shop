@@ -37,7 +37,7 @@ class ProductsController extends Controller
                 // 则筛选出该父类目下所有子类目的商品
                 $builder->whereHas('category', function ($query) use ($category) {
                     // 这里的逻辑参考本章第一节
-                    $query->where('path', 'like', $category->path.$category->id.'-%');
+                    $query->where('path', 'like', $category->path.$category->id.'-%')->orWhere('category_id', $category->id);
                 });
             } else {
                 // 如果这不是一个父类目，则直接筛选此类目下的商品
