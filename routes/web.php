@@ -43,11 +43,14 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
 
     Route::get('coupon_codes/{code}', 'CouponCodesController@show')->name('coupon_codes.show');
     Route::post('crowdfunding_orders', 'OrdersController@crowdfunding')->name('crowdfunding_orders.store');
-    Route::post('advance_orders', 'OrdersController@advance')->name('advance_orders.store');
+    Route::post('advance_orders', 'OrdersController@advance')->name('advance_orders.store'); //预售
+    Route::post('seckill_orders', 'OrdersController@seckill')->name('seckill_orders.store'); //秒杀
 });
 Route::get('products/{product}', 'ProductsController@show')->name('products.show');
 Route::post('payment/alipay/notify', 'PaymentController@alipayNotify')->name('payment.alipay.notify');
 Route::post('payment/wechat/notify', 'PaymentController@wechatNotify')->name('payment.wechat.notify');
 Route::post('payment/wechat/refund_notify', 'PaymentController@wechatRefundNotify')->name('payment.wechat.refund_notify');
+
+
 
 
