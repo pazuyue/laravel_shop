@@ -9,6 +9,7 @@ use App\Http\Requests\AdvanceOrderRequest;
 use App\Http\Requests\ApplyRefundRequest;
 use App\Http\Requests\CrowdFundingOrderRequest;
 use App\Http\Requests\OrderRequest;
+use App\Http\Requests\SeckillOrderRequest;
 use App\Http\Requests\SendReviewRequest;
 use App\Models\CouponCode;
 use App\Models\ProductSku;
