@@ -60,8 +60,6 @@
                   <button class="btn btn-primary btn-add-to-cart">加入购物车</button>
               @endif
           </div>
-
-          </div>
       @else
         <!-- 原普通商品模块开始 -->
           <div class="price"><label>价格</label><em>￥</em><span>{{ $product->price }}</span></div>
