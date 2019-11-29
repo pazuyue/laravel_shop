@@ -41,8 +41,8 @@
                 <!-- Carbon 对象的 diffForHumans() 方法可以计算出与当前时间的相对时间，更人性化 -->
                 筹款将在<span class="text-red">{{ $product->crowdfunding->end_at->diffForHumans(now()) }}</span>结束！
               </div>
-            @endif
-          <!-- 秒杀商品下单按钮开始 -->
+
+                  <!-- 秒杀商品下单按钮开始 -->
               @elseif($product->type === \App\Models\Product::TYPE_SECKILL)
                   @if(Auth::check())
                       @if($product->seckill->is_before_start)
@@ -60,6 +60,7 @@
                   <button class="btn btn-primary btn-add-to-cart">加入购物车</button>
               @endif
           </div>
+            @endif
       @else
         <!-- 原普通商品模块开始 -->
           <div class="price"><label>价格</label><em>￥</em><span>{{ $product->price }}</span></div>
