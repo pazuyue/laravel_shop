@@ -41,26 +41,11 @@
                 <!-- Carbon 对象的 diffForHumans() 方法可以计算出与当前时间的相对时间，更人性化 -->
                 筹款将在<span class="text-red">{{ $product->crowdfunding->end_at->diffForHumans(now()) }}</span>结束！
               </div>
-
-                  <!-- 秒杀商品下单按钮开始 -->
-              @elseif($product->type === \App\Models\Product::TYPE_SECKILL)
-                  @if(Auth::check())
-                      @if($product->seckill->is_before_start)
-                          <button class="btn btn-primary btn-seckill disabled countdown">抢购倒计时</button>
-                      @elseif($product->seckill->is_after_end)
-                          <button class="btn btn-primary btn-seckill disabled">抢购已结束</button>
-                      @else
-                          <button class="btn btn-primary btn-seckill">立即抢购</button>
-                      @endif
-                  @else
-                      <a class="btn btn-primary" href="{{ route('login') }}">请先登录</a>
-                  @endif
-              <!-- 秒杀商品下单按钮结束 -->
-              @else
-                  <button class="btn btn-primary btn-add-to-cart">加入购物车</button>
-              @endif
-          </div>
             @endif
+
+              
+
+          </div>
       @else
         <!-- 原普通商品模块开始 -->
           <div class="price"><label>价格</label><em>￥</em><span>{{ $product->price }}</span></div>
@@ -116,11 +101,31 @@
                   @else
                       <a class="btn btn-primary" href="{{ route('login') }}">请先登录</a>
                   @endif
+
+                  <!-- 秒杀商品下单按钮开始 -->
+              @elseif($product->type === \App\Models\Product::TYPE_SECKILL)
+                  @if(Auth::check())
+                      @if($product->seckill->is_before_start)
+                          <button class="btn btn-primary btn-seckill disabled countdown">抢购倒计时</button>
+                      @elseif($product->seckill->is_after_end)
+                          <button class="btn btn-primary btn-seckill disabled">抢购已结束</button>
+                      @else
+                          <button class="btn btn-primary btn-seckill">立即抢购</button>
+                      @endif
+                  @else
+                      <a class="btn btn-primary" href="{{ route('login') }}">请先登录</a>
+                  @endif
+              <!-- 秒杀商品下单按钮结束 -->
+
           @else
             <button class="btn btn-primary btn-add-to-cart">加入购物车</button>
         @endif
         <!-- 众筹商品下单按钮结束 -->
         </div>
+
+
+
+
       </div>
     </div>
     <div class="product-detail">
@@ -406,7 +411,11 @@
         // 如果是秒杀商品并且尚未开始秒杀
         @if($product->type == \App\Models\Product::TYPE_SECKILL && $product->seckill->is_before_start)
         // 将秒杀开始时间转成一个 moment 对象
-        var startTime = moment.unix({{ $product->seckill->start_at->getTimestamp() }});
+        //var startTime = moment.unix({{ $product->seckill->start_at->getTimestamp() }});
+        var start_at = new Date('{{$product->seckill->start_at}}');
+        var startTime = start_at.getTime()/1000;
+        console.log(startTime);
+
         // 设定一个定时器
         var hdl = setInterval(function () {
             // 获取当前时间
