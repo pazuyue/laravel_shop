@@ -14,7 +14,7 @@ use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 
-class SeckillProductsController extends Controller
+class SeckillProductsController extends CommonProductsController
 {
 
     /**
